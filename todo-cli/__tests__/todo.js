@@ -8,24 +8,24 @@
 /* eslint-disable no-undef */
 const todoList = require("../todo");
 const { all, markAsComplete, add, overdue,dueToday,dueLater } = todoList();
-const TODAY = new Date(); 
-const one_DAY = 60 * 60 * 24 * 1000;
+const T_day = new Date(); 
+const _1DAY = 60 * 60 * 24 * 1000;
 describe("todoList", () => {
   beforeAll(() => {
-    const TODAY = new Date();
+    const T_day = new Date();
      //referred to discord forum for this line of code
     add({
-      title: "Test Todo",
+      title: "Test_To_check",
       completed: false,
-      dueDate: new Date(TODAY.getTime() - 1 * one_DAY).toLocaleDateString("en-CA",),
+      dueDate: new Date(T_day.getTime() - 1 * _1DAY).toLocaleDateString("en-CA",),
     });
     add({
-      title: "Test Todo_2",
+      title: "Test_To_check2",
       completed: false,
-      dueDate: new Date(TODAY.getTime() + 1 * one_DAY).toLocaleDateString("en-CA",),
+      dueDate: new Date(T_day.getTime() + 1 * _1DAY).toLocaleDateString("en-CA",),
     });
     add({
-      title: "Test Todo_3",
+      title: "Test_To_check3",
       completed: false,
       dueDate: new Date().toLocaleDateString("en-CA"),
     });
@@ -33,7 +33,7 @@ describe("todoList", () => {
   test("A test that checks creating a new todo", () => {
     const Todo_ItemsCount = all.length;
     add({
-      title: "Test Todo",
+      title: "Test_To_check",
       completed: false,
       dueDate: new Date().toLocaleDateString("en-CA"),
     });
@@ -47,9 +47,9 @@ describe("todoList", () => {
   test("checks retrieval of overdue items", () => {
     const overDue_ItemsCount =overdue().length;
     add({
-        title: "Test Todo",
+        title: "Test_To_check",
         completed: false,
-        dueDate: new Date(TODAY.getTime() - 1 * one_DAY).toLocaleDateString(
+        dueDate: new Date(T_day.getTime() - 1 * _1DAY).toLocaleDateString(
           "en-CA",
         ),
       });
@@ -58,7 +58,7 @@ describe("todoList", () => {
   test("checks retrieval of due today items", () => {
     const duetoday_ItemsCount =dueToday().length;
     add({
-        title: "Test Todo3",
+        title: "Test_To_check3",
         completed: false,
         dueDate: new Date().toLocaleDateString("en-CA"),
       });
@@ -67,9 +67,9 @@ describe("todoList", () => {
   test("checks retrieval of due later items", () => {
     const dueLater_ItemsCount =dueLater().length;
     add({
-        title: "Test Todo2",
+        title: "Test_To_check2",
         completed: false,
-        dueDate: new Date(TODAY.getTime() + 2 * one_DAY)
+        dueDate: new Date(T_day.getTime() + 2 * _1DAY)
         .toISOString()
         .slice(0, 10),
       });
