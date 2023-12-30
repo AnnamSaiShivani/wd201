@@ -72,25 +72,16 @@ describe("Todo Application", function () {
   });
 
   test("Deletes a todo with the given ID if it exists and sends a boolean response", async () => {
-   console.log("We have to delete a Todo with ID: ", request.params.id);
-  // FILL IN YOUR CODE HERE
-  try {
-    const todo = await Todo.findByPk(request.params.id);
-    if (todo) {
-      await todo.destroy({
-        where :{
-          id:"DELETE /todos/:id"
-        }
-      });
-      response.send(true);
-    } else {
-      response.status(false);
-    }
- } catch (error) {
-    console.error(error);
-    response.status(422).json(error);
-  // First, we have to query our database to delete a Todo by ID.
-  // Then, we have to respond back with true/false based on whether the Todo was deleted or not.
-  // response.send(true)
-}
+     const response = await agent.post("/todos").send({
+       title: "Buy milk",
+       dueDate: new Date().toISOString(),
+       completed: false,
+     });
+     const parsedResponse = JSON.parse(response.text);
+     const todoID = parsedResponse.id;
+
+     const deleteResponse = await agent.delete(`/todos/${todoID}`);
+     const parsedDeleteResponse = JSON.parse(deleteResponse.text);
+     expect(parsedDeleteResponse).toBe(true);
+   });
 });
