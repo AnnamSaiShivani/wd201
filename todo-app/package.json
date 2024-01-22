@@ -9,7 +9,7 @@
     "pretest": "NODE_ENV=test npx sequelize-cli db:drop && NODE_ENV=test npx sequelize-cli db:create",
     "test": "NODE_ENV=test jest --detectOpenHandles",
     "prepare": "husky install",
-    "onetime-setup-husky": "cd .. && husky install .git"
+    "onetime-setup-husky": "cd .. && husky install todo-app/.husky"
 
   },
   "lint-staged": {
